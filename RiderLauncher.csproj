@@ -20,4 +20,16 @@
       <DebugType>none</DebugType>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(OS)' == 'Windows_NT' ">
+        <DefineConstants>WIN</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' ">
+        <DefineConstants>MAC</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' ">
+        <DefineConstants>LINUX</DefineConstants>
+    </PropertyGroup>
+
 </Project>

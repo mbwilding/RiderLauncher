@@ -5,7 +5,7 @@ StartApplication(FindExe());
 string FindExe()
 {
     string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-    string riderPre = @"JetBrains\Toolbox\apps\Rider\ch-0";
+    string riderPre = "JetBrains/Toolbox/apps/Rider/ch-0";
     string riderPreDir = Path.Combine(localAppData, riderPre);
     List<string> dirs = Directory.GetDirectories(riderPreDir)
         .Where(x => !x.Contains("plugins"))
@@ -13,7 +13,11 @@ string FindExe()
     string? latestVersion = dirs.Select(x=> new Version(Path.GetFileName(x))).Max()?.ToString();
     if (latestVersion is null)
         Environment.Exit(1);
-    return Path.Combine(riderPreDir, latestVersion, @"bin\rider64.exe");
+#if WIN
+    return Path.Combine(riderPreDir, latestVersion, @"bin/rider.exe");
+#elif !WIN
+    return Path.Combine(riderPreDir, latestVersion, @"bin/rider.sh");
+#endif
 }
 
 void StartApplication(string filePath)
@@ -22,6 +26,11 @@ void StartApplication(string filePath)
     {
         FileName = filePath,
         Arguments = args.FirstOrDefault(),
-        UseShellExecute = false
+#if WIN
+        UseShellExecute = false,
+#elif !WIN
+        UseShellExecute = true,
+        WorkingDirectory = Path.GetDirectoryName(filePath)
+#endif
     });
 }
