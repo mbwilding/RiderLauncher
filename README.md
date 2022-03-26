@@ -3,7 +3,7 @@ Allows you to associate .SLN files with RiderLauncher to retain the Rider icon a
 
 Windows
 --
-Just associate '.sln' files with your recently buildt RiderLauncher<br>
+Just associate '.sln' files with your recently built RiderLauncher<br>
 
 Linux
 --
