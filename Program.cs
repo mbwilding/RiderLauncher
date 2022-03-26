@@ -14,7 +14,7 @@ string FindExe()
     if (latestVersion is null)
         Environment.Exit(1);
 #if WIN
-    return Path.Combine(riderPreDir, latestVersion, @"bin/rider.exe");
+    return Path.Combine(riderPreDir.Replace('/', '\\'), latestVersion, @"bin\rider64.exe");
 #elif !WIN
     return Path.Combine(riderPreDir, latestVersion, @"bin/rider.sh");
 #endif
@@ -27,7 +27,7 @@ void StartApplication(string filePath)
         FileName = filePath,
         Arguments = args.FirstOrDefault(),
 #if WIN
-        UseShellExecute = false,
+        UseShellExecute = false
 #elif !WIN
         UseShellExecute = true,
         WorkingDirectory = Path.GetDirectoryName(filePath)
