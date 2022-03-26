@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=RiderLauncher
+MimeType=application/x-desktop
+Terminal=false
+Type=Application
+StartupNotify=false
+Exec=/home/anon/RiderProjects/RiderLauncher/bin/Publish/RiderLauncher-Linux %u
+Icon=/home/anon/RiderProjects/RiderLauncher/bin/Publish/Rider.svg
